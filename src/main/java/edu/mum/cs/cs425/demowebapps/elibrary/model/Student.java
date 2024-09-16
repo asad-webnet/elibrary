@@ -37,15 +37,11 @@ public class Student {
     @Temporal(TemporalType.DATE)
     private Date dateOfEnrollment;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "transcript_id")
     private Transcript transcript;
 
-    @ManyToMany
-    @JoinTable(
-            name = "student_classroom",
-            joinColumns = @JoinColumn(name = "student_id"),
-            inverseJoinColumns = @JoinColumn(name = "classroom_id")
-    )
-    private Set<Classroom> classrooms;
+    @ManyToOne
+    @JoinColumn(name = "classroom_id")
+    private Classroom classroom;
 }

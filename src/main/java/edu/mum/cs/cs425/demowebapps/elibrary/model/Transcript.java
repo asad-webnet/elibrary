@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+
 
 @Entity
 @Table(name = "transcripts")
@@ -17,8 +19,11 @@ public class Transcript {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long transcriptId;
+    private Long transcriptId;
 
     @Column(nullable = false)
     private String degreeTitle;
+
+    @OneToMany(mappedBy = "transcript")
+    private HashSet<Student> students;
 }

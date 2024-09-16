@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+
 
 @Entity
 @Table(name = "classrooms")
@@ -17,11 +19,14 @@ public class Classroom {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long classroomId;
+    private Long classroomId;
 
     @Column(nullable = false)
     private String buildingName;
 
     @Column(nullable = false)
     private String roomNumber;
+
+    @OneToMany(mappedBy = "classroom")
+    private HashSet<Student> students;
 }
